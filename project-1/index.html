@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21-Days-21-Projects-1</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header role="banner">
+      <div class="container">
+        <nav role="navigation" aria-label="Main Navigation">
+          <h1>ExploreWorld</h1>
+          <ul>
+            <li><a href="#home" aria-current="page">Home</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#booking">Book Now</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Home -->
+    <section id="home" role="region" aria-label="Home Section">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="bg-video"
+        aria-label="Travel background video"
+      >
+        <source
+          src="https://www.pexels.com/download/video/3015510/"
+          type="video/mp4"
+        />
+        Your browser does not support HTML5 video.
+      </video>
+
+      <div class="overlay" aria-hidden="true"></div>
+
+      <div class="home-content container">
+        <h2>Discover Your Next Adventure</h2>
+        <p>
+          Explore breathtaking destinations around the world and create memories
+          that last a lifetime.
+        </p>
+        <a href="#packages" class="btn" aria-label="Explore travel packages">
+          Explore Packages
+        </a>
+      </div>
+    </section>
+
+    <!-- Destinations -->
+    <section
+      id="destinations"
+      class="section"
+      role="region"
+      aria-labelledby="destinations-heading"
+    >
+      <div class="container">
+        <h2 id="destinations-heading">Popular Destinations</h2>
+        <div class="destinations-grid" role="list">
+          <article class="destination-card" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80"
+              alt="Eiffel Tower in Paris, France"
+            />
+            <h3>Paris, France</h3>
+          </article>
+
+          <article class="destination-card" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+              alt="Tropical beaches of Bali, Indonesia"
+            />
+            <h3>Bali, Indonesia</h3>
+          </article>
+
+          <article class="destination-card" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80"
+              alt="New York City skyline at sunset"
+            />
+            <h3>New York, USA</h3>
+          </article>
+
+          <article class="destination-card" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=800&q=80"
+              alt="Tokyo city lights in Japan"
+            />
+            <h3>Tokyo, Japan</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Packages -->
+    <section
+      id="packages"
+      class="section"
+      role="region"
+      aria-labelledby="packages-heading"
+    >
+      <div class="container">
+        <h2 id="packages-heading">Our Packages</h2>
+        <div class="packages-grid" role="list">
+          <article class="package" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80"
+              alt="Europe scenic travel package"
+            />
+            <h3>Europe Explorer</h3>
+            <p>10 Days | Starting from $1200</p>
+            <button aria-label="Book Europe Explorer package">Book Now</button>
+          </article>
+
+          <article class="package" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+              alt="Maldives water villas travel package"
+            />
+            <h3>Maldives Paradise</h3>
+            <p>7 Days | Starting from $900</p>
+            <button aria-label="Book Maldives Paradise package">
+              Book Now
+            </button>
+          </article>
+
+          <article class="package" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=800&q=80"
+              alt="Tokyo city exploration package"
+            />
+            <h3>Tokyo Delight</h3>
+            <p>5 Days | Starting from $1100</p>
+            <button aria-label="Book Tokyo Delight package">Book Now</button>
+          </article>
+
+          <article class="package" role="listitem">
+            <img
+              src="https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=800&q=80"
+              alt="Dubai luxury city travel package"
+            />
+            <h3>Dubai Luxury Escape</h3>
+            <p>6 Days | Starting from $999</p>
+            <button aria-label="Book Dubai Luxury Escape package">
+              Book Now
+            </button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section
+      id="testimonials"
+      class="section"
+      role="region"
+      aria-labelledby="testimonials-heading"
+    >
+      <div class="container">
+        <h2 id="testimonials-heading">What Our Travelers Say</h2>
+        <div class="testimonials-grid" role="list">
+          <blockquote class="testimonial" role="listitem">
+            <i class="fa-solid fa-quote-left fa-2x" aria-hidden="true"></i>
+            <p>
+              “ExploreWorld made our honeymoon unforgettable! Everything was
+              perfectly arranged.”
+            </p>
+            <h4>- Priya & Rahul</h4>
+          </blockquote>
+
+          <blockquote class="testimonial" role="listitem">
+            <i class="fa-solid fa-quote-left fa-2x" aria-hidden="true"></i>
+            <p>
+              “Highly professional service! Our Europe trip was amazing. Totally
+              recommended!”
+            </p>
+            <h4>- Aman Verma</h4>
+          </blockquote>
+
+          <blockquote class="testimonial" role="listitem">
+            <i class="fa-solid fa-quote-left fa-2x" aria-hidden="true"></i>
+            <p>
+              “Affordable, easy, and wonderful experience from booking to
+              travel.”
+            </p>
+            <h4>- Neha Sharma</h4>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section
+      id="booking"
+      role="form"
+      aria-labelledby="booking-heading"
+      aria-describedby="booking-desc"
+    >
+      <div class="container">
+        <h2 id="booking-heading">Book Your Trip</h2>
+        <p id="booking-desc" style="text-align: center; margin-bottom: 20px">
+          Fill out your details and we’ll get back to you shortly.
+        </p>
+        <form aria-label="Booking form">
+          <label for="fullname" class="visually-hidden">Full Name</label>
+          <input type="text" id="fullname" placeholder="Full Name" required />
+
+          <label for="email" class="visually-hidden">Email Address</label>
+          <input type="email" id="email" placeholder="Email Address" required />
+
+          <label for="phone" class="visually-hidden">Phone Number</label>
+          <input type="tel" id="phone" placeholder="Phone Number" required />
+
+          <label for="destination" class="visually-hidden">Destination</label>
+          <select id="destination" required>
+            <option value="">Select Destination</option>
+            <option>Paris</option>
+            <option>Bali</option>
+            <option>New York</option>
+            <option>Tokyo</option>
+          </select>
+
+          <label for="message" class="visually-hidden">Message</label>
+          <textarea
+            id="message"
+            placeholder="Message or Special Request"
+            rows="4"
+          ></textarea>
+
+          <button type="submit" aria-label="Submit booking form">
+            Submit Booking
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+      <div class="container footer-container">
+        <div>
+          <h3>About ExploreWorld</h3>
+          <p>
+            We make your travel dreams come true with handpicked destinations,
+            affordable packages, and seamless booking experiences.
+          </p>
+        </div>
+
+        <div>
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#booking">Book Now</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Contact Us</h3>
+          <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+          <p><i class="fa-solid fa-envelope"></i> info@exploreworld.com</p>
+        </div>
+
+        <div>
+          <h3>Find Us</h3>
+          <iframe
+            title="ExploreWorld Office Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019835235083!2d-122.41941538468187!3d37.77492977975932!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064d9d7b8a3%3A0x47fca1f7b3b9b0e!2sTravel%20Agency!5e0!3m2!1sen!2sin!4v1680000000000"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; 2025 ExploreWorld. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>
