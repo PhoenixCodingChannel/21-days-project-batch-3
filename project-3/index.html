@@ -277,73 +277,224 @@
               </div>
             </div>
             <div class="col-sm-6 col-xl-3">
-            <div class="card border-0 shadow-sm h-100 rounded-4">
-              <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <h6 class="text-body-secondary text-uppercase fw-semibold small">
-                    Total Resources
-                  </h6>
+              <div class="card border-0 shadow-sm h-100 rounded-4">
+                <div class="card-body p-4">
                   <div
-                    class="bg-primary-subtle text-primary rounded-circle p-2 d-flex align-items-center justify-content-center"
-                    style="width: 32px; height: 32px">
-                    <i class="fa-solid fa-users"></i>
+                    class="d-flex justify-content-between align-items-start mb-2"
+                  >
+                    <h6
+                      class="text-body-secondary text-uppercase fw-semibold small"
+                    >
+                      Total Resources
+                    </h6>
+                    <div
+                      class="bg-primary-subtle text-primary rounded-circle p-2 d-flex align-items-center justify-content-center"
+                      style="width: 32px; height: 32px"
+                    >
+                      <i class="fa-solid fa-users"></i>
+                    </div>
+                  </div>
+                  <h3 class="fw-bold mb-1">128</h3>
+                  <div class="d-flex align-items-center">
+                    <span
+                      class="badge bg-success-subtle text-success rounded-pill me-2"
+                      ><i class="fa-solid fa-arrow-up"></i> 6%</span
+                    >
+                    <span class="small text-body-secondary">vs last month</span>
                   </div>
                 </div>
-                <h3 class="fw-bold mb-1">128</h3>
-                <div class="d-flex align-items-center">
-                  <span class="badge bg-success-subtle text-success rounded-pill me-2"><i
-                      class="fa-solid fa-arrow-up"></i> 6%</span>
-                  <span class="small text-body-secondary">vs last month</span>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="card border-0 shadow-sm h-100 rounded-4">
+                <div class="card-body p-4">
+                  <div
+                    class="d-flex justify-content-between align-items-start mb-2"
+                  >
+                    <h6
+                      class="text-body-secondary text-uppercase fw-semibold small"
+                    >
+                      Total Resources
+                    </h6>
+                    <div
+                      class="bg-primary-subtle text-primary rounded-circle p-2 d-flex align-items-center justify-content-center"
+                      style="width: 32px; height: 32px"
+                    >
+                      <i class="fa-solid fa-users"></i>
+                    </div>
+                  </div>
+                  <h3 class="fw-bold mb-1">128</h3>
+                  <div class="d-flex align-items-center">
+                    <span
+                      class="badge bg-success-subtle text-success rounded-pill me-2"
+                      ><i class="fa-solid fa-arrow-up"></i> 6%</span
+                    >
+                    <span class="small text-body-secondary">vs last month</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="card border-0 shadow-sm h-100 rounded-4">
+                <div class="card-body p-4">
+                  <div
+                    class="d-flex justify-content-between align-items-start mb-2"
+                  >
+                    <h6
+                      class="text-body-secondary text-uppercase fw-semibold small"
+                    >
+                      Total Resources
+                    </h6>
+                    <div
+                      class="bg-primary-subtle text-primary rounded-circle p-2 d-flex align-items-center justify-content-center"
+                      style="width: 32px; height: 32px"
+                    >
+                      <i class="fa-solid fa-users"></i>
+                    </div>
+                  </div>
+                  <h3 class="fw-bold mb-1">128</h3>
+                  <div class="d-flex align-items-center">
+                    <span
+                      class="badge bg-success-subtle text-success rounded-pill me-2"
+                      ><i class="fa-solid fa-arrow-up"></i> 6%</span
+                    >
+                    <span class="small text-body-secondary">vs last month</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card border-0 shadow-sm h-100 rounded-4">
-              <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <h6 class="text-body-secondary text-uppercase fw-semibold small">
-                    Total Resources
-                  </h6>
-                  <div
-                    class="bg-primary-subtle text-primary rounded-circle p-2 d-flex align-items-center justify-content-center"
-                    style="width: 32px; height: 32px">
-                    <i class="fa-solid fa-users"></i>
-                  </div>
+
+          <!-- chart section -->
+          <div class="row g-4 mb-5">
+            <div class="col-lg-7">
+              <div class="card border-0 shadow-sm h-100 rounded-4">
+                <div class="card-header bg-transparent border-0 pt-4 px-4">
+                  <h5 class="fw-bold mb-0">Utilization Trends</h5>
                 </div>
-                <h3 class="fw-bold mb-1">128</h3>
-                <div class="d-flex align-items-center">
-                  <span class="badge bg-success-subtle text-success rounded-pill me-2"><i
-                      class="fa-solid fa-arrow-up"></i> 6%</span>
-                  <span class="small text-body-secondary">vs last month</span>
+                <div class="card-body px-4 pb-4">
+                  <canvas id="utilChart" height="150"></canvas>
+                </div>
+              </div>
+            </div>
+            <!-- col-5 row -->
+            <div class="col-lg-5">
+              <div class="card border-0 shadow-sm h-100 rounded-4">
+                <div
+                  class="card-header bg-transparent border-0 pt-4 px-4 d-flex justify-content-between align-items-center"
+                >
+                  <h5 class="fw-bold mb-0">Top Allocations</h5>
+                  <button class="btn btn-sm btn-light rounded-pill px-3">
+                    View All
+                  </button>
+                </div>
+                <div class="card-body p-0">
+                  <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th class="ps-4">Team</th>
+                          <th>Members</th>
+                          <th class="pe-4">Capacity</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="ps-4">
+                            <div class="d-flex align-items-center">
+                              <div class="bg-primary-subtle rounded p-1 me-2">
+                                <i class="fa-solid fa-server text-primary"></i>
+                              </div>
+                              <span class="fw-medium">Platform</span>
+                            </div>
+                          </td>
+                          <td>28</td>
+                          <td class="pe-4">
+                            <div
+                              class="d-flex align-items-center gap-2"
+                              style="width: 120px"
+                            >
+                              <div
+                                class="progress w-100"
+                                role="progressbar"
+                                style="height: 6px"
+                              >
+                                <div
+                                  class="progress-bar"
+                                  style="width: 78%"
+                                ></div>
+                              </div>
+                              <span class="small fw-semibold">78%</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="ps-4">
+                            <div class="d-flex align-items-center">
+                              <div class="bg-info-subtle rounded p-1 me-2">
+                                <i class="fa-solid fa-brain text-info"></i>
+                              </div>
+                              <span class="fw-medium">Data Science</span>
+                            </div>
+                          </td>
+                          <td>14</td>
+                          <td class="pe-4">
+                            <div
+                              class="d-flex align-items-center gap-2"
+                              style="width: 120px"
+                            >
+                              <div
+                                class="progress w-100"
+                                role="progressbar"
+                                style="height: 6px"
+                              >
+                                <div
+                                  class="progress-bar bg-info"
+                                  style="width: 62%"
+                                ></div>
+                              </div>
+                              <span class="small fw-semibold">62%</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="ps-4">
+                            <div class="d-flex align-items-center">
+                              <div class="bg-warning-subtle rounded p-1 me-2">
+                                <i
+                                  class="fa-solid fa-mobile-screen text-warning"
+                                ></i>
+                              </div>
+                              <span class="fw-medium">Mobile App</span>
+                            </div>
+                          </td>
+                          <td>18</td>
+                          <td class="pe-4">
+                            <div
+                              class="d-flex align-items-center gap-2"
+                              style="width: 120px"
+                            >
+                              <div
+                                class="progress w-100"
+                                role="progressbar"
+                                style="height: 6px"
+                              >
+                                <div
+                                  class="progress-bar bg-warning"
+                                  style="width: 45%"
+                                ></div>
+                              </div>
+                              <span class="small fw-semibold">45%</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-sm-6 col-xl-3">
-            <div class="card border-0 shadow-sm h-100 rounded-4">
-              <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <h6 class="text-body-secondary text-uppercase fw-semibold small">
-                    Total Resources
-                  </h6>
-                  <div
-                    class="bg-primary-subtle text-primary rounded-circle p-2 d-flex align-items-center justify-content-center"
-                    style="width: 32px; height: 32px">
-                    <i class="fa-solid fa-users"></i>
-                  </div>
-                </div>
-                <h3 class="fw-bold mb-1">128</h3>
-                <div class="d-flex align-items-center">
-                  <span class="badge bg-success-subtle text-success rounded-pill me-2"><i
-                      class="fa-solid fa-arrow-up"></i> 6%</span>
-                  <span class="small text-body-secondary">vs last month</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-          
         </main>
       </div>
     </div>
