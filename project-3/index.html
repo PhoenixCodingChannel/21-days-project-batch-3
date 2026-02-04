@@ -34,6 +34,7 @@
 
   <body class="bg-body-secondary">
     <div id="wrapper" class="d-flex">
+      <!-- sidebar -->
       <div
         class="sidebar bg-body-tertiary border-end p-3 d-none d-lg-flex flex-column flex-shrink-0 position-fixed top-0 start-0 z-3"
       >
@@ -124,6 +125,65 @@
           </ul>
         </div>
       </div>
+
+      <!-- top header -->
+      <header class="p-3 mb-4 border-bottom bg-body-tertiary sticky-top">
+        <div
+          class="container-fluid d-flex align-items-center justify-content-between"
+        >
+          <div class="d-flex align-items-center gap-3">
+            <button
+              class="btn btn-outline-secondary d-lg-none"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileSidebar"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <h4 class="mb-0 d-none d-sm-block fw-semibold">Dashboard</h4>
+          </div>
+
+          <div class="d-flex align-items-center gap-3">
+            <form class="d-none d-md-flex" role="search">
+              <div class="input-group">
+                <span class="input-group-text bg-body-secondary border-end-0"
+                  ><i class="fa-solid fa-magnifying-glass text-secondary"></i
+                ></span>
+                <input
+                  class="form-control bg-body-secondary border-start-0"
+                  type="search"
+                  placeholder="Search..."
+                  aria-label="Search"
+                />
+              </div>
+            </form>
+
+            <div class="vr mx-2"></div>
+
+            <!-- Theme Toggle -->
+            <button
+              class="btn btn-outline-secondary rounded-circle p-2"
+              id="themeToggle"
+              style="width: 40px; height: 40px"
+            >
+              <i class="fa-regular fa-moon" id="themeIcon"></i>
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline-secondary position-relative rounded-circle p-2"
+              style="width: 40px; height: 40px"
+            >
+              <i class="fa-regular fa-bell"></i>
+              <span
+                class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"
+              >
+                <span class="visually-hidden">New alerts</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </header>
     </div>
   </body>
 </html>
