@@ -21,7 +21,7 @@ const lastSync = document.getElementById("lastSync");
 
 // Modal elements
 const confirmModal = new bootstrap.Modal(
-  document.getElementById("confirmModal")
+  document.getElementById("confirmModal"),
 );
 const confirmTitle = document.getElementById("confirmTitle");
 const confirmMeta = document.getElementById("confirmMeta");
@@ -37,14 +37,12 @@ const state = {
   pendingSlot: null, // temporary slot before confirmation
 };
 
-
 function readBookings() {
   // Get bookings from LocalStorage or use empty array
   state.bookings = JSON.parse(
-    localStorage.getItem("quickslot-bookings") || "[]"
+    localStorage.getItem("quickslot-bookings") || "[]",
   );
 }
-
 
 function saveBookings() {
   localStorage.setItem("quickslot-bookings", JSON.stringify(state.bookings));
@@ -88,7 +86,6 @@ function renderProviderSelect() {
   });
 }
 
-
 async function syncClock() {
   try {
     const res = await fetch(clockUrl);
@@ -105,7 +102,7 @@ async function syncClock() {
     });
 
     lastSync.textContent = `Last synced ${new Date().toLocaleTimeString(
-      "en-IN"
+      "en-IN",
     )}`;
   } catch (err) {
     // fallback when time API fails
@@ -114,11 +111,10 @@ async function syncClock() {
     state.nowUtc = new Date(); // local time
     statClock.textContent = state.nowUtc.toLocaleTimeString("en-IN");
     lastSync.textContent = `Fallback to client ${new Date().toLocaleTimeString(
-      "en-IN"
+      "en-IN",
     )}`;
   }
 }
-
 
 function setMinDate() {
   const today = new Date().toISOString().split("T")[0]; // yyyy-mm-dd
@@ -156,12 +152,11 @@ function isSlotDisabled(date, slotLabel) {
     (item) =>
       item.date === date &&
       item.slot === slotLabel &&
-      item.providerId === state.target?.providerId
+      item.providerId === state.target?.providerId,
   );
 
   return alreadyBooked;
 }
-
 
 function renderSlots(providerId, date) {
   const provider = state.providers.find((p) => p.id === Number(providerId));
@@ -178,7 +173,7 @@ function renderSlots(providerId, date) {
   // Update header info
   slotsHeadline.textContent = `Slots for ${provider.name}`;
   slotMeta.textContent = `${new Date(
-    date
+    date,
   ).toDateString()} • refreshed ${new Date().toLocaleTimeString("en-IN")}`;
 
   const slots = buildSlots(date);
@@ -208,7 +203,6 @@ function renderSlots(providerId, date) {
     slotsGrid.appendChild(col);
   });
 }
-
 
 function openModal(provider, date, slotLabel) {
   state.pendingSlot = { provider, date, slotLabel };
@@ -264,8 +258,8 @@ function renderBookings() {
           <div>
             <div class="fw-semibold">${booking.provider}</div>
             <div class="small text-secondary">${booking.date} · ${
-        booking.slot
-      }</div>
+              booking.slot
+            }</div>
             <div class="small text-muted">${booking.notes || "No notes"}</div>
           </div>
 
@@ -281,3 +275,41 @@ function renderBookings() {
       bookingsList.appendChild(card);
     });
 }
+
+function cancelBooking(id) {
+  state.bookings = state.bookings.filter((booking) => booking.id !== id);
+  saveBookings();
+  renderBookings();
+
+  if (state.target) {
+    renderSlots(state.target.providerId, state.target.date);
+  }
+}
+
+clearBookingsBtn.addEventListener("click", () => {
+  if (!state.bookings.length) return;
+
+  if (confirm("Are you sure you want to clear all bookings?")) {
+    state.bookings = [];
+    saveBookings();
+    readBookings();
+    if (state.target) renderSlots(state.target.providerId, state.target.date);
+  }
+});
+
+loadSlotsBtn.addEventListener("click", async () => {
+  const providerId = providerSelect.value;
+  const date = dateInput.value;
+
+  if (!providerId || !date) {
+    alert("please select a date or provider");
+    return;
+  }
+  await syncClock();
+  renderSlots(providerId, date);
+});
+
+refreshBtn.addEventListener("click", async () => {
+  await syncClock();
+  if (state.target) renderSlots(state.target.providerId, state.target.date);
+});
