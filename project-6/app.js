@@ -707,3 +707,180 @@ function calculateATS(data) {
 
   return { score: Math.min(100, score), feedback };
 }
+
+function addSectionLink(section) {
+  if (!sectionNav) return;
+  const button = document.createElement("button");
+  button.type = "button";
+  button.textContent = section.title;
+  button.addEventListener("click", () => {
+    document.getElementById(section.id)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+  sectionNav.appendChild(button);
+  navButtons.set(section.id, button);
+}
+
+function watchSections(entries) {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      setActiveSection(entry.target.id);
+    }
+  });
+}
+
+function setActiveSection(sectionId) {
+  navButtons.forEach((button, id) => {
+    button.classList.toggle("active", id === sectionId);
+  });
+}
+
+function setPreviewBg(mode) {
+  if (!previewStage) return;
+  previewStage.classList.remove("grid");
+  if (mode === "grid") {
+    previewStage.classList.add("grid");
+  }
+}
+
+function refreshStats() {
+  const filled = countFilled();
+  /* 
+     Logic: e.g. total possible fields vs filled. 
+     For now we just count raw filled inputs relative to an arbitrary 'good' number or total inputs.
+  */
+  const totalInputs = form.querySelectorAll("input, textarea").length;
+  const percentage =
+    totalInputs > 0 ? Math.round((filled / totalInputs) * 100) : 0;
+
+  if (fieldProgress) {
+    fieldProgress.textContent = `${percentage}%`;
+  }
+  refreshSections();
+  refreshMeta();
+  refreshATS(); // Recalculate score on update
+}
+
+function countFilled() {
+  let filled = 0;
+  form
+    .querySelectorAll("input[data-key], textarea[data-key]")
+    .forEach((input) => {
+      if (input.value.trim()) {
+        filled += 1;
+      }
+    });
+  return filled;
+}
+
+function refreshSections() {
+  schema.forEach((section) => {
+    const complete = sectionHasData(section);
+    const navButton = navButtons.get(section.id);
+    if (navButton) {
+      navButton.classList.toggle("is-complete", complete);
+    }
+  });
+}
+
+function sectionHasData(section) {
+  if (section.repeatable) {
+    return (state.data[section.id] || []).some((entry) =>
+      section.fields.some((field) => entry?.[field.key]?.trim()),
+    );
+  }
+  return section.fields.some((field) => state.data[field.key]?.trim());
+}
+
+function refreshMeta() {
+  const completed = schema.filter(sectionHasData).length;
+  const filled = countFilled();
+  if (liveMeta) {
+    liveMeta.textContent = `Live Preview · ${completed}/${schema.length} sections active`;
+  }
+}
+
+async function savePdf() {
+  const template = templates[state.templateKey];
+  const prepared = prepareData();
+
+  if (!window.html2canvas || !window.jspdf) {
+    console.warn("PDF libraries unavailable.");
+    return;
+  }
+
+  const exportNode = buildExportNode(template, prepared);
+  document.body.appendChild(exportNode);
+  await waitFrame();
+
+  try {
+    const canvas = await window.html2canvas(exportNode, {
+      scale: 2,
+      backgroundColor: "#ffffff",
+      useCORS: true,
+    });
+    const imgData = canvas.toDataURL("image/png");
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF("p", "pt", "a4");
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const ratio = Math.min(
+      pageWidth / canvas.width,
+      pageHeight / canvas.height,
+    );
+    const imgWidth = canvas.width * ratio;
+    const imgHeight = canvas.height * ratio;
+
+    pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+    pdf.save(`${(prepared.fullName || "resume").replace(/\s+/g, "-")}.pdf`);
+  } catch (error) {
+    console.error("PDF export failed", error);
+  } finally {
+    document.body.removeChild(exportNode);
+  }
+}
+
+function buildExportNode(template, prepared) {
+  const node = document.createElement("div");
+  node.className = `resume-preview ${template.className}`;
+  node.style.position = "absolute";
+  node.style.left = "-9999px";
+  node.style.top = "0";
+  node.style.width = "794px"; /* A4 width 96dpi */
+  node.style.background = "#ffffff";
+  node.style.padding = "0";
+  node.innerHTML = template.render(prepared);
+
+  // Inject export specific styles
+  const styleTag = document.createElement("style");
+  styleTag.textContent = EXPORT_STYLES;
+  node.appendChild(styleTag);
+
+  return node;
+}
+
+function waitFrame() {
+  return new Promise((resolve) => requestAnimationFrame(() => resolve()));
+}
+
+if (downloadBtn) {
+  downloadBtn.addEventListener("click", savePdf);
+}
+
+//reset function
+
+if (resetBtn) {
+  resetBtn.addEventListener("click", () => {
+    form.reset();
+    state.data = {};
+    Object.entries(collections).forEach(([sectionId, collections]) => {
+      collections.innerHTML = "";
+      const section = schema.find((s) => s.id === sectionId);
+      addRepeater(section, collections);
+    });
+    drawPreview();
+    refreshStats();
+  });
+}
